@@ -1,20 +1,20 @@
 export default function Header() {
   return (
     <>
-      <div className=" h-10 flex items-center justify-between px-4">
+      <div className=" h-15 flex items-center justify-between px-4 border-gray-50 rounded shadow-sm relative">
         <div className="flex items-center justify-start ml-3">
           <img src="globe.svg" alt="window" width={20} />
-          <h2>🏡</h2>
+          <h2 className="ml-2 cursor-pointer text-lg">🏡 Tiello</h2>
         </div>
         <div className="flex items-center ">
           <form action="search">
             <input
               type="text"
-              className="border-1 border-gray-500 w-[60dvw] py-0.5 rounded"
+              className="border-[0.3px] border-gray-300 w-[45dvw] py-0.5 rounded pl-3"
               placeholder="🔎 Search"
             />
           </form>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 ml-3 rounded">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 ml-3 rounded cursor-pointer ">
             Create
           </button>
         </div>
