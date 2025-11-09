@@ -1,28 +1,34 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function LeftBar() {
   const [dropdown, setDropdown] = useState(false);
   return (
     <div className=" pt-10 max-w-70 font-sans font-medium text-base fixed">
       <div className="ml-3">
-        <div className="cursor-pointer hover:bg-gray-200 mb-3 p-1 flex items-center rounded">
-          <p className="pr-3">🔲</p>
-          <h2>Boards</h2>
-        </div>
+        <Link href="/boards">
+          <div className="cursor-pointer hover:bg-gray-200 mb-3 p-1 flex items-center rounded">
+            <p className="pr-3">🔲</p>
+            <h2>Boards</h2>
+          </div>
+        </Link>
         <div className="hover:bg-gray-200 cursor-pointer mb-3 p-1 flex items-center rounded">
           <p className="pr-3">🎞</p>
           <h2>Templates</h2>
         </div>
-        <div className="hover:bg-gray-200 cursor-pointer mb-3 p-1 flex items-center rounded">
-          <p className="pr-3">🏠</p>
-          <h2>Home</h2>
-        </div>
+        <Link href="/">
+          {" "}
+          <div className="hover:bg-gray-200 cursor-pointer mb-3 p-1 flex items-center rounded">
+            <p className="pr-3">🏠</p>
+            <h2>Home</h2>
+          </div>
+        </Link>
       </div>{" "}
       <div className="border border-gray-200 w-[95%] flex justify-self-center"></div>
       <div className="ml-3 flex flex-col">
         <p className="text-xs mt-5">Work areas</p>
-         <div
+        <div
           className="mt-3 flex items-center hover:bg-gray-200 cursor-pointer p-3 rounded"
           onClick={() => setDropdown((prev) => !prev)}
         >
@@ -32,18 +38,24 @@ export default function LeftBar() {
           <h1 className="ml-5">Trello Worskpace</h1>{" "}
           <p className="ml-10">{dropdown ? "∧" : "v"}</p>
         </div>
-        
-        {dropdown && <div> <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
-          <h2 className="ml-10 text-sm">🔲 Boards</h2>
-        </div>
-        <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center justify-between rounded">
-          <h2 className="ml-10 text-sm">👥 Members</h2>
-          <p className="mr-5">+</p>
-        </div>
-        <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
-          <h2 className="ml-10 text-sm">🛠 Settings</h2>
-        </div>
-        </div>}
+
+        {dropdown && (
+          <div>
+            {" "}
+            <Link href="/boards">
+              <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
+                <h2 className="ml-10 text-sm">🔲 Boards</h2>
+              </div>
+            </Link>
+            <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center justify-between rounded">
+              <h2 className="ml-10 text-sm">👥 Members</h2>
+              <p className="mr-5">+</p>
+            </div>
+            <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
+              <h2 className="ml-10 text-sm">🛠 Settings</h2>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
