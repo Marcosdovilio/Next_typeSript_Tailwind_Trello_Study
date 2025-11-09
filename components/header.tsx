@@ -1,10 +1,13 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <>
-      <div className=" h-15 flex items-center justify-between px-4 border-gray-50 rounded shadow-sm relative">
+      <div className="relative h-15 w-full flex items-center justify-between px-4 border-gray-50 rounded shadow-sm bg-[#ffffffdf]">
         <div className="flex items-center justify-start ml-3">
-          <img src="globe.svg" alt="window" width={20} />
-          <h2 className="ml-2 cursor-pointer text-lg">🏡 Tiello</h2>
+          <Link href="/">
+            <h2 className="ml-2 cursor-pointer text-lg">🏡 Tiello</h2>
+          </Link>
         </div>
         <div className="flex items-center ">
           <form action="search">
@@ -14,21 +17,21 @@ export default function Header() {
               placeholder="🔎 Search"
             />
           </form>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 ml-3 rounded cursor-pointer ">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 ml-3 rounded cursor-pointer transition hover:scale-110 duration-150 ease-in">
             Create
           </button>
         </div>
         <div className="flex items-center pl-3 space-x-4">
-          <p className="cursor-pointer flex justify-center bg-red-300 w-6 rounded-full">
+          <p className="cursor-pointer flex justify-center bg-red-300 w-6 rounded-full transition hover:-translate-y-1 duration-150 ease-in">
             📢
           </p>
-          <p className="cursor-pointer flex justify-center bg-green-200 w-6 rounded-full">
+          <p className="cursor-pointer flex justify-center bg-green-200 w-6 rounded-full transition hover:-translate-y-1 duration-150 ease-in">
             🔔
           </p>
-          <p className="cursor-pointer flex justify-center bg-yellow-300 w-6 rounded-full">
+          <p className="cursor-pointer flex justify-center bg-yellow-300 w-6 rounded-full transition hover:-translate-y-1 duration-150 ease-in">
             ❓
           </p>
-          <p className="cursor-pointer flex justify-center bg-blue-500 w-6 rounded-full">
+          <p className="cursor-pointer flex justify-center bg-blue-500 w-6 rounded-full transition hover:-translate-y-1 duration-150 ease-in">
             👤
           </p>
         </div>
