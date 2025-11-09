@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { useBoards } from "@/hooks/useBoards";
 import CreateBoard from "./createBoard";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 type Board = {
@@ -10,47 +12,42 @@ type Board = {
 
 export default function RecentlyViewed() {
   const [createNew, setCreateNew] = useState(false);
+  const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [boards, setBoards] = useState<Board[]>([]);
+  const { boards, createBoard } = useBoards();
+  const router = useRouter();
 
   useEffect(() => {
-    const storedBoards = localStorage.getItem("boards");
-    if (storedBoards) {
-      setBoards(JSON.parse(storedBoards));
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setCreateNew(false);
+        setOpen(false);
       }
-    };
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuRef]);
+  }, []);
 
   console.log("Recently viewed boards:", boards);
 
   return (
     <>
       <div className=" flex flex-col fixed right-0 top-30 w-70">
-        <p className="mb-10 text-sm">⏲ Recently viewed</p>
+        <p className="mb-2 text-sm">⏲ Recently viewed</p>
         <ul className="space-y-2">
           {boards.map((board) => (
-            <Link key={`${board.id}`} href={`/boards/${board.id}`}>
-              <li
-                key={board.id}
-                className=" rounded px-3 py-2 bg-gray-50 hover:bg-gray-100 cursor-pointer"
-              >
-                {board.title}
-              </li>{" "}
-            </Link>
+            <li
+              key={board.id}
+              onClick={() => router.push(`/boards/${board.id}`)}
+              className="cursor-pointer border-0 rounded px-3 py-2 bg-gray-100 hover:bg-gray-200"
+            >
+              {board.title}
+            </li>
           ))}
         </ul>
-        <p>Links</p>
+        <p className="mt-2">Links</p>
         <div
           className="flex items-center mt-5 hover:bg-gray-100 cursor-pointer"
           onClick={() => setCreateNew((prev) => !prev)}

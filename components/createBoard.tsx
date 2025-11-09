@@ -1,37 +1,21 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
+import { useBoards } from "@/hooks/useBoards";
 
 import { useRouter } from "next/navigation";
 
-type Board = {
-  id: number;
-  title: string;
-};
-
 export default function CreateBoard() {
-  const [boards, setBoards] = useState<Board[]>([]);
+  const { boards, createBoard } = useBoards();
   const [newTitle, setNewTitle] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    localStorage.setItem("boards", JSON.stringify(boards));
-  }, [boards]);
-
   const handleCreateBoard = (e: FormEvent) => {
     e.preventDefault();
-    if (!newTitle.trim()) return;
-
-    const newBoard: Board = { id: Date.now(), title: newTitle.trim() };
-
-    // adiciona ao array
-    const updatedBoards = [...boards, newBoard];
-    setBoards(updatedBoards);
-
-    // salva imediatamente no localStorage
-    localStorage.setItem("boards", JSON.stringify(updatedBoards));
-
-    // navega pra página dessa nova board
-    router.push(`/boards/${newBoard.id}`);
+    const board = createBoard(newTitle);
+    if (board) {
+      setNewTitle("");
+      router.push(`/boards/${board.id}`);
+    }
   };
 
   return (

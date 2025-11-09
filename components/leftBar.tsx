@@ -7,12 +7,13 @@ export default function LeftBar() {
   return (
     <div className=" pt-10 max-w-70 font-sans font-medium text-base fixed">
       <div className="ml-3">
-        <Link href="/boards">
-          <div className="cursor-pointer hover:bg-gray-200 mb-3 p-1 flex items-center rounded">
-            <p className="pr-3">🔲</p>
-            <h2>Boards</h2>
-          </div>
-        </Link>
+        <div className="cursor-pointer hover:bg-gray-200 mb-3 p-1 flex items-center rounded">
+          <p className="pr-3">🔲</p>
+          <h2>
+            <Link href="/boards">Boards</Link>
+          </h2>
+        </div>
+
         <div className="hover:bg-gray-200 cursor-pointer mb-3 p-1 flex items-center rounded">
           <p className="pr-3">🎞</p>
           <h2>Templates</h2>
@@ -42,11 +43,11 @@ export default function LeftBar() {
         {dropdown && (
           <div>
             {" "}
-            <Link href="/boards">
-              <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
-                <h2 className="ml-10 text-sm">🔲 Boards</h2>
-              </div>
-            </Link>
+            <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center rounded">
+              <h2 className="ml-10 text-sm">
+                <Link href={`/boards`}>🔲 Boards</Link>
+              </h2>
+            </div>
             <div className="hover:bg-gray-200 cursor-pointer mb-1 p-1 flex items-center justify-between rounded">
               <h2 className="ml-10 text-sm">👥 Members</h2>
               <p className="mr-5">+</p>

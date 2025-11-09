@@ -1,13 +1,13 @@
+"use client";
 import Link from "next/link";
-
 export default function Header() {
   return (
     <>
       <div className="relative h-15 w-full flex items-center justify-between px-4 border-gray-50 rounded shadow-sm bg-[#ffffffdf]">
         <div className="flex items-center justify-start ml-3">
-          <Link href="/">
-            <h2 className="ml-2 cursor-pointer text-lg">🏡 Tiello</h2>
-          </Link>
+          <h2 className="ml-2 cursor-pointer text-lg">
+            <Link href={`/`}>🏡 Tiello</Link>
+          </h2>
         </div>
         <div className="flex items-center ">
           <form action="search">
